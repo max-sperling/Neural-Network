@@ -37,7 +37,7 @@ void printVector(string label, vector<T>& v)
     cout << v.back() << endl;
 }
 
-}
+} // namespace
 
 int main(int argc, char* argv[])
 {
