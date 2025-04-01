@@ -1,8 +1,13 @@
 /**
  * @author Max Sperling
  */
+
 #pragma once
+
 #include "Edge.hpp"
+
+#include <cstdint>
+#include <stdfloat>
 #include <vector>
 
 namespace network {
@@ -41,19 +46,19 @@ public:
      * @param[in] numOutputs ... Number of output edges
      * @param[in] isBias     ... Indicates if bias node
      */
-    Neuron(int index, unsigned numOutputs, bool isBias = false);
+    Neuron(int32_t index, uint32_t numOutputs, bool isBias = false);
 
     /**
      * @brief Set the output value
      * @param[in] val ... Output value
      */
-    void setOutputVal(double val);
+    void setOutputVal(std::float64_t val);
 
     /**
      * @brief Get the output value
      * @return Output value
      */
-    double getOutputVal() const;
+    std::float64_t getOutputVal() const;
 
     /**
      * @brief Calculate output value
@@ -79,7 +84,7 @@ public:
      *
      * @param[in] targetVal ... Expected results
      */
-    void calcInpGradOutNeuron(double targetVal);
+    void calcInpGradOutNeuron(std::float64_t targetVal);
 
     /**
      * @brief Calculate input gradient of hidden neuron
@@ -121,10 +126,10 @@ public:
     void print();
 
 private:
-    int m_index;
+    int32_t m_index;
     std::vector<Edge> m_outputEdges;
-    double m_outputVal;
-    double m_inputGradient;
+    std::float64_t m_outputVal;
+    std::float64_t m_inputGradient;
 };
 
-}
+} // namespace network

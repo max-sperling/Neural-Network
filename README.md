@@ -10,8 +10,9 @@ Feed-forward neural network (FNN)
 
 ## Requirements
 
-- CMake (Version >= 3.5)
-- C++-Compiler (Standard >= C++17)
+- CMake (Version >= 3.20)
+- C++-Compiler (Standard >= C++23)
+- oneTBB
 
 ## Build
 

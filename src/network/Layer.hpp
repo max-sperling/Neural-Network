@@ -1,8 +1,11 @@
 /**
  * @author Max Sperling
  */
+
 #pragma once
+
 #include "Neuron.hpp"
+
 #include <optional>
 #include <vector>
 
@@ -26,7 +29,7 @@ public:
      * @param[in] type       ... Type of the layer
      * @param[in] numOutputs ... Number of output edges (per neuron)
      */
-    Layer(Type type, unsigned numOutputs);
+    Layer(Type type, uint32_t numOutputs);
 
     /**
      * @brief Add neuron to the layer
@@ -38,13 +41,13 @@ public:
      * @param[in] position ... Position of the neuron
      * @return Neuron at position
      */
-    Neuron& at(unsigned position);
+    Neuron& at(uint32_t position);
 
     /**
      * @brief Get the size of the layer
      * @return Size of the layer
      */
-    unsigned size() const;
+    uint32_t size() const;
 
     /**
      * @brief Get the bias of the layer
@@ -58,9 +61,9 @@ public:
     void print();
 
 private:
-    unsigned m_numOutputs;
+    uint32_t m_numOutputs;
     std::vector<Neuron> m_neurons;
     std::optional<Neuron> m_bias;
 };
 
-}
+} // namespace network

@@ -1,7 +1,9 @@
 /**
  * @author Max Sperling
  */
+
 #include "Edge.hpp"
+
 #include <iostream>
 
 namespace network {
@@ -13,4 +15,4 @@ void Edge::print()
     std::cout << "weight=" << m_weight << " deltaWeight=" << m_deltaWeight;
 }
 
-}
+} // namespace network

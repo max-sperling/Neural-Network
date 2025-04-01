@@ -2,12 +2,12 @@
  * @author Max Sperling
  */
 #include "Reader.hpp"
-#include <vector>
-#include <iostream>
-#include <cstdlib>
+
 #include <cassert>
 #include <cmath>
+#include <cstdlib>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
 using namespace std;
@@ -24,8 +24,8 @@ Reader::~Reader()
     m_dataFile.close();
 }
 
-bool Reader::getNextDataset(vector<double>& inputVals,
-                            vector<double>& outputVals)
+bool Reader::getNextDataset(vector<float64_t>& inputVals,
+                            vector<float64_t>& outputVals)
 {
     assert(m_dataFile.is_open());
 
@@ -45,7 +45,7 @@ bool Reader::getNextDataset(vector<double>& inputVals,
         inpStream >> label;
         if (label.compare("in:") == 0)
         {
-            double val;
+            float64_t val;
             while (inpStream >> val)
             {
                 inputVals.push_back(val);
@@ -60,7 +60,7 @@ bool Reader::getNextDataset(vector<double>& inputVals,
         outpStream >> label;
         if (label.compare("out:") == 0)
         {
-            double val;
+            float64_t val;
             while (outpStream >> val)
             {
                 outputVals.push_back(val);
@@ -71,4 +71,4 @@ bool Reader::getNextDataset(vector<double>& inputVals,
     return true;
 }
 
-}
+} // namespace reader

@@ -10,8 +10,7 @@
 
 using namespace std;
 
-namespace
-{
+namespace {
 
 void generate_xor(uint32_t count)
 {
@@ -93,11 +92,11 @@ void generate_div(uint32_t count)
 
 int main(int argc, char* argv[])
 {
-    srand(static_cast<unsigned>(time(NULL)));
+    srand(static_cast<uint32_t>(time(NULL)));
 
     if (argc != 3)
     {
-        cerr << "Usage: " << argv[0] << " <mul|xor|div>" << " <count>" << endl;
+        cerr << "Usage: " << argv[0] << " <mul|xor|div> <count>" << endl;
         return 1;
     }
 

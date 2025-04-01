@@ -1,8 +1,11 @@
 /**
  * @author Max Sperling
  */
+
 #pragma once
+
 #include <fstream>
+#include <stdfloat>
 #include <string>
 #include <vector>
 
@@ -30,11 +33,11 @@ public:
      * @param[out] outputVals ... Output values
      * @return Dataset still available?
      */
-    bool getNextDataset(std::vector<double>& inputVals,
-                        std::vector<double>& outputVals);
+    bool getNextDataset(std::vector<std::float64_t>& inputVals,
+                        std::vector<std::float64_t>& outputVals);
 
 private:
     std::ifstream m_dataFile;
 };
 
-}
+} // namespace reader

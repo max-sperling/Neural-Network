@@ -1,7 +1,10 @@
 /**
  * @author Max Sperling
  */
+
 #pragma once
+
+#include <stdfloat>
 
 namespace network {
 
@@ -21,8 +24,8 @@ public:
      */
     void print();
 
-    double m_weight;
-    double m_deltaWeight;
+    std::float64_t m_weight;
+    std::float64_t m_deltaWeight;
 };
 
-}
+} // namespace network

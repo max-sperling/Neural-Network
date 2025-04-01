@@ -1,7 +1,9 @@
 /**
  * @author Max Sperling
  */
+
 #include "Layer.hpp"
+
 #include <cassert>
 #include <iostream>
 
@@ -9,7 +11,7 @@ using namespace std;
 
 namespace network {
 
-Layer::Layer(Type type, unsigned numOutputs)
+Layer::Layer(Type type, uint32_t numOutputs)
     : m_numOutputs(numOutputs), m_neurons(), m_bias()
 {
     assert(type != Type::UNDEF);
@@ -19,7 +21,7 @@ Layer::Layer(Type type, unsigned numOutputs)
     case Type::INPUT:
     case Type::HIDDEN:
         {
-            int index = -1;
+            int32_t index = -1;
             m_bias = std::make_optional<Neuron>(index, m_numOutputs, true);
         }
     }
@@ -27,16 +29,16 @@ Layer::Layer(Type type, unsigned numOutputs)
 
 void Layer::addNeuron()
 {
-    int index = m_neurons.size();
+    int32_t index = m_neurons.size();
     m_neurons.push_back(Neuron(index, m_numOutputs));
 }
 
-Neuron& Layer::at(unsigned position)
+Neuron& Layer::at(uint32_t position)
 {
     return m_neurons.at(position);
 }
 
-unsigned Layer::size() const
+uint32_t Layer::size() const
 {
     return m_neurons.size();
 }
@@ -48,7 +50,7 @@ std::optional<Neuron>& Layer::getBias()
 
 void Layer::print()
 {
-    for (unsigned n = 0; n < m_neurons.size(); ++n)
+    for (uint32_t n = 0; n < m_neurons.size(); ++n)
     {
         m_neurons.at(n).print();
     }
@@ -59,4 +61,4 @@ void Layer::print()
     }
 }
 
-}
+} // namespace network
