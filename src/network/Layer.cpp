@@ -4,17 +4,17 @@
 
 #include "Layer.hpp"
 
-#include <cassert>
 #include <iostream>
-
-using namespace std;
 
 namespace network {
 
 Layer::Layer(Type type, uint32_t numOutputs)
     : m_numOutputs(numOutputs), m_neurons(), m_bias()
 {
-    assert(type != Type::UNDEF);
+    if (type == Type::UNDEF) {
+        std::cerr << "The type of a layer can't be UNDEF\n";
+        std::exit(1);
+    }
 
     switch (type)
     {

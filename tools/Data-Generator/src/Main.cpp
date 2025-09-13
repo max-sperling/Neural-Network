@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
 
     if (argc != 3)
     {
-        cerr << "Usage: " << argv[0] << " <mul|xor|div> <count>" << endl;
+        cerr << "Usage: " << argv[0] << " <xor|mul|div> <count>" << endl;
         return 1;
     }
 
@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        cerr << "Invalid argument. Use 'mul', 'xor' or 'div'." << endl;
+        cerr << "Invalid argument. Use 'xor', 'mul' or 'div'." << endl;
         return 1;
     }
 

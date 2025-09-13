@@ -6,16 +6,13 @@
 
 #include "tbb/parallel_for.h"
 
-#include <cassert>
 #include <cmath>
 #include <iostream>
 #include <vector>
 
 namespace network {
 
-using namespace std;
-
-Network::Network(const vector<uint32_t>& topology)
+Network::Network(const std::vector<uint32_t>& topology)
     : m_layers(), m_mvAvgError(0.0)
 {
     for (uint32_t l = 0; l < topology.size(); ++l)
@@ -48,9 +45,12 @@ Network::Network(const vector<uint32_t>& topology)
     }
 }
 
-void Network::feedForward(const vector<float64_t>& inputVals)
+void Network::feedForward(const std::vector<std::float64_t>& inputVals)
 {
-    assert(inputVals.size() == m_layers.front().size());
+    if (inputVals.size() != m_layers.front().size()) {
+        std::cerr << "The training data input does not match the number of input neurons\n";
+        std::exit(1);
+    }
 
     for (uint32_t l = 0; l < m_layers.size(); ++l)
     {
@@ -74,7 +74,7 @@ void Network::feedForward(const vector<float64_t>& inputVals)
     }
 }
 
-void Network::getResults(vector<float64_t>& resultVals)
+void Network::getResults(std::vector<std::float64_t>& resultVals)
 {
     resultVals.clear();
 
@@ -84,9 +84,12 @@ void Network::getResults(vector<float64_t>& resultVals)
     }
 }
 
-void Network::propagateBack(const vector<float64_t>& targetVals)
+void Network::propagateBack(const std::vector<std::float64_t>& targetVals)
 {
-    assert(targetVals.size() == m_layers.back().size());
+    if (targetVals.size() != m_layers.back().size()) {
+        std::cerr << "The training data output does not match the number of output neurons\n";
+        std::exit(1);
+    }
 
     updateMvAvgError(targetVals);
 
@@ -124,7 +127,7 @@ void Network::propagateBack(const vector<float64_t>& targetVals)
     }
 }
 
-float64_t Network::getMvAvgError() const
+std::float64_t Network::getMvAvgError() const
 {
     return m_mvAvgError;
 }
@@ -137,10 +140,10 @@ void Network::print()
     }
 }
 
-void Network::updateMvAvgError(const vector<float64_t>& targetVals)
+void Network::updateMvAvgError(const std::vector<std::float64_t>& targetVals)
 {
     // Calculate RMSE of output layer
-    float64_t rmse = 0.0;
+    std::float64_t rmse = 0.0;
     for (uint32_t n = 0; n < m_layers.back().size(); ++n)
     {
         rmse += pow(targetVals[n] - m_layers.back().at(n).getOutputVal(), 2);
@@ -156,7 +159,7 @@ void Network::updateMvAvgError(const vector<float64_t>& targetVals)
     }
     else
     {
-        float64_t sFactor = 0.1; // Smoothing factor
+        std::float64_t sFactor = 0.1; // Smoothing factor
         m_mvAvgError = sFactor * rmse + (1.0 - sFactor) * m_mvAvgError;
     }
 }

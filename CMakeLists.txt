@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(TBB REQUIRED)
 
+add_subdirectory(tools/Data-Generator)
+
 add_executable(${PROJECT_NAME} app/Main.cpp
     src/reader/Reader.cpp src/network/Network.cpp
     src/network/Layer.cpp src/network/Neuron.cpp

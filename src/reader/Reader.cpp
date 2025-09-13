@@ -5,16 +5,13 @@
 
 #include <cassert>
 #include <cmath>
-#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 
-using namespace std;
-
 namespace reader {
 
-Reader::Reader(const string& filename)
+Reader::Reader(const std::string& filename)
 {
     m_dataFile.open(filename.c_str());
 }
@@ -24,28 +21,31 @@ Reader::~Reader()
     m_dataFile.close();
 }
 
-bool Reader::getNextDataset(vector<float64_t>& inputVals,
-                            vector<float64_t>& outputVals)
+bool Reader::getNextDataset(std::vector<std::float64_t>& inputVals,
+                            std::vector<std::float64_t>& outputVals)
 {
-    assert(m_dataFile.is_open());
+    if (!m_dataFile.is_open()) {
+        std::cerr << "The training data file is not open, but it should be\n";
+        std::exit(1);
+    }
 
     inputVals.clear();
     outputVals.clear();
 
-    string inputLine, outputLine;
+    std::string inputLine, outputLine;
     getline(m_dataFile, inputLine);
     getline(m_dataFile, outputLine);
 
     if (inputLine.empty() || outputLine.empty()) { return false; }
 
     {
-        stringstream inpStream(inputLine);
+        std::stringstream inpStream(inputLine);
 
-        string label;
+        std::string label;
         inpStream >> label;
         if (label.compare("in:") == 0)
         {
-            float64_t val;
+            std::float64_t val;
             while (inpStream >> val)
             {
                 inputVals.push_back(val);
@@ -54,13 +54,13 @@ bool Reader::getNextDataset(vector<float64_t>& inputVals,
     }
 
     {
-        stringstream outpStream(outputLine);
+        std::stringstream outpStream(outputLine);
 
-        string label;
+        std::string label;
         outpStream >> label;
         if (label.compare("out:") == 0)
         {
-            float64_t val;
+            std::float64_t val;
             while (outpStream >> val)
             {
                 outputVals.push_back(val);
