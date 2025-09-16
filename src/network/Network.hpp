@@ -5,8 +5,8 @@
 #pragma once
 
 #include "Layer.hpp"
+#include "utils/Arguments.hpp"
 
-#include <cstdint>
 #include <stdfloat>
 #include <string>
 #include <vector>
@@ -21,9 +21,9 @@ class Network
 public:
     /**
      * @brief Construct a network
-     * @param[in] topology ... Topology of the network
+     * @param[in] args ... Arguments including topology
      */
-    Network(const std::vector<uint32_t>& topology);
+    Network(const utils::Arguments& args);
 
     /**
      * @brief Feed values into the network (input layer neurons)
@@ -61,6 +61,7 @@ public:
 private:
     void updateMvAvgError(const std::vector<std::float64_t>& targetVals);
 
+    const utils::Arguments& m_args;
     std::vector<Layer> m_layers;
     std::float64_t m_mvAvgError;
 };

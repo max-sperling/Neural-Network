@@ -4,9 +4,10 @@
 
 #pragma once
 
+#include "utils/Arguments.hpp"
+
 #include <fstream>
 #include <stdfloat>
-#include <string>
 #include <vector>
 
 namespace reader {
@@ -19,8 +20,9 @@ class Reader
 public:
     /**
      * @brief Construct a reader
+     * @param[in] args ... Arguments including filename
      */
-    Reader(const std::string& filename);
+    Reader(const utils::Arguments& args);
 
     /**
      * @brief Destruct a reader
@@ -37,6 +39,7 @@ public:
                         std::vector<std::float64_t>& outputVals);
 
 private:
+    const utils::Arguments& m_args;
     std::ifstream m_dataFile;
 };
 

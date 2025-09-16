@@ -8,8 +8,6 @@
 #include <ctime>
 #include <iostream>
 
-using namespace std;
-
 namespace {
 
 void generate_xor(uint32_t count)
@@ -20,10 +18,10 @@ void generate_xor(uint32_t count)
         uint32_t in2 = rand() % 2;
         uint32_t res = in1 ^ in2;
 
-        cout << "in: " << in1 << " " << in2 << "\n";
-        cout << "out: " << res << "\n";
+        std::cout << "in: " << in1 << " " << in2 << "\n";
+        std::cout << "out: " << res << "\n";
     }
-    cout << std::flush;
+    std::cout << std::flush;
 }
 
 void generate_mul(uint32_t count)
@@ -34,21 +32,21 @@ void generate_mul(uint32_t count)
         uint32_t in2 = rand() % 4;
         uint32_t res = in1 * in2;
 
-        cout << "in: ";
-        for (char c : bitset<2>(in1).to_string()) { cout << c << " "; }
-        for (char c : bitset<2>(in2).to_string()) { cout << c << " "; }
-        cout << "\n";
+        std::cout << "in: ";
+        for (char c : std::bitset<2>(in1).to_string()) { std::cout << c << " "; }
+        for (char c : std::bitset<2>(in2).to_string()) { std::cout << c << " "; }
+        std::cout << "\n";
 
-        cout << "out: ";
-        for (char c : bitset<4>(res).to_string()) { cout << c << " "; }
-        cout << "\n";
+        std::cout << "out: ";
+        for (char c : std::bitset<4>(res).to_string()) { std::cout << c << " "; }
+        std::cout << "\n";
     }
-    cout << std::flush;
+    std::cout << std::flush;
 }
 
 void generate_div(uint32_t count)
 {
-    static constexpr array<array<uint32_t, 20>, 10> numbers = {{
+    static constexpr std::array<std::array<uint32_t, 20>, 10> numbers = {{
         {1, 1, 1, 1,  1, 0, 0, 1,  1, 0, 0, 1,  1, 0, 0, 1,  1, 1, 1, 1}, // 0
         {0, 0, 1, 1,  0, 1, 0, 1,  1, 0, 0, 1,  0, 0, 0, 1,  0, 0, 0, 1}, // 1
         {1, 1, 1, 1,  0, 0, 0, 1,  1, 1, 1, 1,  1, 0, 0, 0,  1, 1, 1, 1}, // 2
@@ -65,7 +63,7 @@ void generate_div(uint32_t count)
     {
         uint32_t num = rand() % 10;
 
-        bitset<10> divisors;
+        std::bitset<10> divisors;
         for (uint32_t d = 1; d <= 9; ++d)
         {
             if (num % d == 0)
@@ -74,21 +72,21 @@ void generate_div(uint32_t count)
             }
         }
 
-        cout << "in: ";
+        std::cout << "in: ";
         for (uint32_t i = 0; i < 20; ++i)
         {
-            cout << numbers[num][i] << " ";
+            std::cout << numbers[num][i] << " ";
         }
-        cout << "\n";
+        std::cout << "\n";
 
-        cout << "out: ";
+        std::cout << "out: ";
         for (uint32_t i = 0; i < divisors.size(); ++i)
         {
-            cout << divisors[i] << " ";
+            std::cout << divisors[i] << " ";
         }
-        cout << "\n";
+        std::cout << "\n";
     }
-    cout << std::flush;
+    std::cout << std::flush;
 }
 
 } // namespace
@@ -99,11 +97,11 @@ int main(int argc, char* argv[])
 
     if (argc != 3)
     {
-        cerr << "Usage: " << argv[0] << " <xor|mul|div> <count>" << endl;
+        std::cerr << "Usage: " << argv[0] << " <xor|mul|div> <count>" << std::endl;
         return 1;
     }
 
-    string mode = argv[1];
+    std::string mode = argv[1];
     uint32_t count = strtoul(argv[2], NULL, 10);
 
     if (mode == "xor")
@@ -120,7 +118,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        cerr << "Invalid argument. Use 'xor', 'mul' or 'div'." << endl;
+        std::cerr << "Invalid argument. Use 'xor', 'mul' or 'div'." << std::endl;
         return 1;
     }
 

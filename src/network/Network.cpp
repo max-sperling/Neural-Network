@@ -3,7 +3,6 @@
  */
 
 #include "Network.hpp"
-#include "Arguments.hpp"
 
 #include "tbb/parallel_for.h"
 #include "tbb/blocked_range.h"
@@ -27,9 +26,11 @@ uint32_t getBlockSize(uint32_t layerSize) {
 
 } // namespace
 
-Network::Network(const std::vector<uint32_t>& topology)
-    : m_layers(), m_mvAvgError(0.0)
+Network::Network(const utils::Arguments& args)
+    : m_args(args), m_layers(), m_mvAvgError(0.0)
 {
+    auto& topology = args.m_topo;
+
     for (uint32_t l = 0; l < topology.size(); ++l)
     {
         Layer::Type layerType = Layer::Type::UNDEF;
@@ -73,7 +74,7 @@ void Network::feedForward(const std::vector<std::float64_t>& inputVals)
         uint32_t layerSize = m_layers[l].size();
         uint32_t blockSize = getBlockSize(layerSize);
         auto& layer = m_layers[l];
-        if (Arguments::getInstance().isUseTBB()) {
+        if (m_args.m_useTBB) {
             tbb::parallel_for(tbb::blocked_range<uint32_t>(0, layerSize, blockSize),
                 [&](const tbb::blocked_range<uint32_t>& r) {
                     for (uint32_t n = r.begin(); n != r.end(); ++n) {
@@ -124,7 +125,7 @@ void Network::propagateBack(const std::vector<std::float64_t>& targetVals)
         uint32_t layerSize = m_layers[l].size();
         uint32_t blockSize = getBlockSize(layerSize);
         auto& layer = m_layers[l];
-        if (Arguments::getInstance().isUseTBB()) {
+        if (m_args.m_useTBB) {
             tbb::parallel_for(tbb::blocked_range<uint32_t>(0, layerSize, blockSize),
                 [&](const tbb::blocked_range<uint32_t>& r) {
                     for (uint32_t n = r.begin(); n != r.end(); ++n) {
@@ -154,7 +155,7 @@ void Network::propagateBack(const std::vector<std::float64_t>& targetVals)
         uint32_t layerSize = m_layers[l].size();
         uint32_t blockSize = getBlockSize(layerSize);
         auto& layer = m_layers[l];
-        if (Arguments::getInstance().isUseTBB()) {
+        if (m_args.m_useTBB) {
             tbb::parallel_for(tbb::blocked_range<uint32_t>(0, layerSize, blockSize),
                 [&](const tbb::blocked_range<uint32_t>& r) {
                     for (uint32_t n = r.begin(); n != r.end(); ++n) {

@@ -1,6 +1,7 @@
 /**
  * @author Max Sperling
  */
+
 #include "Reader.hpp"
 
 #include <cassert>
@@ -11,9 +12,10 @@
 
 namespace reader {
 
-Reader::Reader(const std::string& filename)
+Reader::Reader(const utils::Arguments& args)
+    : m_args(args)
 {
-    m_dataFile.open(filename.c_str());
+    m_dataFile.open(m_args.m_file.c_str());
 }
 
 Reader::~Reader()

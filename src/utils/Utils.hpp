@@ -7,7 +7,7 @@
 #include <sstream>
 #include <string>
 
-namespace network {
+namespace utils {
 
 template<typename T>
 std::string stringifyVector(const std::string& label, const std::vector<T>& v)
@@ -22,4 +22,4 @@ std::string stringifyVector(const std::string& label, const std::vector<T>& v)
     return oss.str();
 }
 
-} // namespace network
+} // namespace utils
