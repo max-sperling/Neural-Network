@@ -7,6 +7,7 @@
 #include "Neuron.hpp"
 
 #include <optional>
+#include <string>
 #include <vector>
 
 namespace network {
@@ -56,9 +57,10 @@ public:
     std::optional<Neuron>& getBias();
 
     /**
-     * @brief Print out the current layer states
+     * @brief Provide the current layer states
+     * @return Current layer states
      */
-    void print();
+    std::string toString() const;
 
 private:
     uint32_t m_numOutputs;

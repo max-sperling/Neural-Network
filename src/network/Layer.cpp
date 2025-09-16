@@ -5,6 +5,7 @@
 #include "Layer.hpp"
 
 #include <iostream>
+#include <sstream>
 
 namespace network {
 
@@ -48,17 +49,19 @@ std::optional<Neuron>& Layer::getBias()
     return m_bias;
 }
 
-void Layer::print()
+std::string Layer::toString() const
 {
-    for (uint32_t n = 0; n < m_neurons.size(); ++n)
-    {
-        m_neurons.at(n).print();
-    }
-
+    std::ostringstream oss;
     if (m_bias.has_value())
     {
-        m_bias->print();
+        oss << m_bias.value().toString() << "\n";
     }
+    for (size_t n = 0; n < m_neurons.size(); ++n)
+    {
+        oss << m_neurons[n].toString();
+        if (n < m_neurons.size() - 1) oss << "\n";
+    }
+    return oss.str();
 }
 
 } // namespace network

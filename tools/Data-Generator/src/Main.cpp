@@ -20,9 +20,10 @@ void generate_xor(uint32_t count)
         uint32_t in2 = rand() % 2;
         uint32_t res = in1 ^ in2;
 
-        cout << "in: " << in1 << " " << in2 << endl;
-        cout << "out: " << res << endl;
+        cout << "in: " << in1 << " " << in2 << "\n";
+        cout << "out: " << res << "\n";
     }
+    cout << std::flush;
 }
 
 void generate_mul(uint32_t count)
@@ -36,12 +37,13 @@ void generate_mul(uint32_t count)
         cout << "in: ";
         for (char c : bitset<2>(in1).to_string()) { cout << c << " "; }
         for (char c : bitset<2>(in2).to_string()) { cout << c << " "; }
-        cout << endl;
+        cout << "\n";
 
         cout << "out: ";
         for (char c : bitset<4>(res).to_string()) { cout << c << " "; }
-        cout << endl;
+        cout << "\n";
     }
+    cout << std::flush;
 }
 
 void generate_div(uint32_t count)
@@ -77,15 +79,16 @@ void generate_div(uint32_t count)
         {
             cout << numbers[num][i] << " ";
         }
-        cout << endl;
+        cout << "\n";
 
         cout << "out: ";
         for (uint32_t i = 0; i < divisors.size(); ++i)
         {
             cout << divisors[i] << " ";
         }
-        cout << endl;
+        cout << "\n";
     }
+    cout << std::flush;
 }
 
 } // namespace

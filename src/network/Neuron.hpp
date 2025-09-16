@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include <stdfloat>
+#include <string>
 #include <vector>
 
 namespace network {
@@ -121,9 +122,10 @@ public:
     void updateInputWeights(Layer& prevLayer);
 
     /**
-     * @brief Print out the current neuron states
+     * @brief Provide the current neuron states
+     * @return Current neuron states
      */
-    void print();
+    std::string toString() const;
 
 private:
     int32_t m_index;

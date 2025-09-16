@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include <stdfloat>
+#include <string>
 #include <vector>
 
 namespace network {
@@ -52,9 +53,10 @@ public:
     std::float64_t getMvAvgError() const;
 
     /**
-     * @brief Print out the current network states
+     * @brief Provide the current network states
+     * @return Current network states
      */
-    void print();
+    std::string toString() const;
 
 private:
     void updateMvAvgError(const std::vector<std::float64_t>& targetVals);

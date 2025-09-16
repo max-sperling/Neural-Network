@@ -22,27 +22,27 @@ Feed-forward neural network (FNN)
 ## Run
 
 1. "Data-Generator": {app} {mode} {count} \> {datafile}
-2. "Neural-Network": {app} {topology} {datafile} \> {resultfile}
+2. "Neural-Network": {app} --topo {topology} --file {datafile} [--verbose-lvl {level} --tbb] \> {resultfile}
 
 ### XOR
 
 ```
 $ ./Data-Generator xor 10000 > data.txt
-$ ./Neural-Network "2 2 1" data.txt > results.txt
+$ ./Neural-Network --topo "2 2 1" --file data.txt > results.txt
 ```
 
 ### MUL
 
 ```
 $ ./Data-Generator mul 10000 > data.txt
-$ ./Neural-Network "4 8 6 4" data.txt > results.txt
+$ ./Neural-Network --topo "4 8 6 4" --file data.txt > results.txt
 ```
 
 ### DIV
 
 ```
 $ ./Data-Generator div 10000 > data.txt
-$ ./Neural-Network "20 32 16 10" data.txt > results.txt
+$ ./Neural-Network --topo "20 32 16 10" --file data.txt > results.txt
 ```
 
 ### Disclaimer

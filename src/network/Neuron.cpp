@@ -8,6 +8,7 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <sstream>
 
 namespace network {
 
@@ -33,15 +34,6 @@ std::float64_t errorFunctionDerivative(std::float64_t actual, std::float64_t exp
 }
 
 } // namespace
-
-void printVector(std::vector<Edge>& v)
-{
-    for (uint32_t i = 0; i < v.size(); ++i)
-    {
-        v[i].print();
-        std::cout << std::endl;
-    }
-}
 
 Neuron::Neuron(int32_t index, uint32_t numOutputs, bool isBias)
     : m_index(index), m_outputEdges(), m_outputVal(0.0), m_inputGradient(0.0)
@@ -151,11 +143,17 @@ void Neuron::updateInputWeights(Layer& prevLayer)
     }
 }
 
-void Neuron::print()
+std::string Neuron::toString() const
 {
-    std::cout << "Neuron " << m_index << " outVal=" << m_outputVal << " inpGrad=" << m_inputGradient << std::endl;
-    printVector(m_outputEdges);
-    std::cout << std::endl;
+    std::ostringstream oss;
+    oss << "Neuron[" << m_index << "] outpValue=" << m_outputVal << " inpGradient=" << m_inputGradient << " ";
+    oss << "edges=[" << "\n";
+    for (size_t i = 0; i < m_outputEdges.size(); ++i)
+    {
+        oss << m_outputEdges[i].toString() << "\n";
+    }
+    oss << "]";
+    return oss.str();
 }
 
 } // namespace network

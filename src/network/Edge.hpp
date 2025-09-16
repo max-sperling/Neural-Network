@@ -5,6 +5,7 @@
 #pragma once
 
 #include <stdfloat>
+#include <string>
 
 namespace network {
 
@@ -20,9 +21,10 @@ public:
     Edge();
 
     /**
-     * @brief Print out the edge
+     * @brief Provide the current edge states
+     * @return Current edge states
      */
-    void print();
+    std::string toString() const;
 
     std::float64_t m_weight;
     std::float64_t m_deltaWeight;
