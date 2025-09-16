@@ -18,7 +18,6 @@ public:
     std::vector<uint32_t> m_topo;
     std::string m_file;
     uint32_t m_verbosity{};
-    bool m_useTBB{};
 };
 
 } // namespace utils

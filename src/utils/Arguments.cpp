@@ -43,14 +43,11 @@ void Arguments::parseArguments(int argc, char* argv[])
         else if (arg == "--verbosity" && i+1 < argc) {
             m_verbosity = std::stoi(argv[++i]);
         }
-        else if (arg == "--tbb") {
-            m_useTBB = true;
-        }
     }
 
     if (m_topo.empty() || m_file.empty()) {
         std::cerr << "Usage: " << argv[0]
-            << " --topo <topology> --file <filepath> [--verbosity <level> --tbb]" << std::endl;
+            << " --topo <topology> --file <filepath> [--verbosity <level>]" << std::endl;
         std::exit(1);
     }
 }

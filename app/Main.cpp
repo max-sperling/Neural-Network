@@ -7,8 +7,6 @@
 #include "utils/Arguments.hpp"
 #include "utils/Utils.hpp"
 
-#include "tbb/tbb.h"
-
 #include <chrono>
 #include <iostream>
 #include <stdfloat>
@@ -22,7 +20,7 @@ int main(int argc, char* argv[])
     args.parseArguments(argc, argv);
 
     std::cout << "General" << "\n";
-    std::cout << "Threads: " << (args.m_useTBB ? std::to_string(tbb::info::default_concurrency()) : "1") << "\n";
+    std::cout << "Thread(s): 1" << "\n";
     std::cout << utils::stringifyVector("Topology:", args.m_topo) << "\n";
 
     // Start timing
@@ -60,8 +58,8 @@ int main(int argc, char* argv[])
     auto trainDuration = std::chrono::duration_cast<std::chrono::milliseconds>(trainEnd - trainStart).count();
 
     std::cout << "\n" << "Summary" << "\n";
-    std::cout << "Final Avg Error: " << network.getMvAvgError() << "\n";
-    std::cout << "Training time: " << trainDuration / 1000.0 << " seconds (" << trainDuration << " ms)" << "\n";
+    std::cout << "Avg Error: " << network.getMvAvgError() << "\n";
+    std::cout << "Calc time: " << trainDuration / 1000.0 << " seconds (" << trainDuration << " ms)" << "\n";
     std::cout << std::flush;
 
     return 0;

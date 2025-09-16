@@ -12,7 +12,6 @@ Feed-forward neural network (FNN)
 
 - CMake (Version >= 3.20)
 - C++-Compiler (Standard >= C++23)
-- oneTBB
 
 ## Build
 
@@ -22,7 +21,7 @@ Feed-forward neural network (FNN)
 ## Run
 
 1. "Data-Generator": {app} {mode} {count} \> {datafile}
-2. "Neural-Network": {app} --topo {topology} --file {datafile} [--verbose-lvl {level} --tbb] \> {resultfile}
+2. "Neural-Network": {app} --topo {topology} --file {filepath} \[--verbosity {level}\] \> {resultfile}
 
 ### XOR
 
