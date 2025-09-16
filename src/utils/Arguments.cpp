@@ -41,7 +41,14 @@ void Arguments::parseArguments(int argc, char* argv[])
             m_file = argv[++i];
         }
         else if (arg == "--verbosity" && i+1 < argc) {
-            m_verbosity = std::stoi(argv[++i]);
+            auto verbosity = std::stoi(argv[++i]);
+            if (verbosity < 0 || verbosity > 2) {
+                std::cerr << "Verbosity level must be between 0 and 2, default is taken instead now" << std::endl;
+            }
+            else
+            {
+                m_verbosity = static_cast<uint32_t>(verbosity);
+            }
         }
     }
 

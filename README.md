@@ -23,6 +23,12 @@ Feed-forward neural network (FNN)
 1. "Data-Generator": {app} {mode} {count} \> {datafile}
 2. "Neural-Network": {app} --topo {topology} --file {filepath} \[--verbosity {level}\] \> {resultfile}
 
+### Verbosity levels
+
+- `0`: Only the minimal output
+- `1`: Basic info per epoch
+- `2`: Detailed info per epoch
+
 ### XOR
 
 ```
