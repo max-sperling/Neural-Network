@@ -5,8 +5,8 @@
 #include "Neuron.hpp"
 #include "Layer.hpp"
 
+#include <algorithm>
 #include <cmath>
-#include <iostream>
 #include <vector>
 #include <sstream>
 
@@ -148,10 +148,10 @@ std::string Neuron::toString() const
     std::ostringstream oss;
     oss << "Neuron[" << m_index << "] outpValue=" << m_outputVal << " inpGradient=" << m_inputGradient << " ";
     oss << "edges=[" << "\n";
-    for (size_t i = 0; i < m_outputEdges.size(); ++i)
+    std::ranges::for_each(m_outputEdges, [&oss](const Edge& edge)
     {
-        oss << m_outputEdges[i].toString() << "\n";
-    }
+        oss << edge.toString() << "\n";
+    });
     oss << "]";
     return oss.str();
 }

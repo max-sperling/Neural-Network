@@ -63,26 +63,26 @@ void generate_div(uint32_t count)
     {
         uint32_t num = rand() % 10;
 
-        std::bitset<10> divisors;
-        for (uint32_t d = 1; d <= 9; ++d)
-        {
-            if (num % d == 0)
-            {
-                divisors.set(9 - d);
-            }
-        }
-
         std::cout << "in: ";
-        for (uint32_t i = 0; i < 20; ++i)
+        for (uint32_t inp = 0; inp < 20; ++inp)
         {
-            std::cout << numbers[num][i] << " ";
+            std::cout << numbers[num][inp] << " ";
         }
         std::cout << "\n";
 
-        std::cout << "out: ";
-        for (uint32_t i = 0; i < divisors.size(); ++i)
+        std::bitset<10> divisors;
+        for (uint32_t div = 1; div < divisors.size(); ++div)
         {
-            std::cout << divisors[i] << " ";
+            if (num % div == 0)
+            {
+                divisors.set(9 - div);
+            }
+        }
+
+        std::cout << "out: ";
+        for (uint32_t outp = 0; outp < divisors.size(); ++outp)
+        {
+            std::cout << divisors[outp] << " ";
         }
         std::cout << "\n";
     }
@@ -93,7 +93,7 @@ void generate_div(uint32_t count)
 
 int main(int argc, char* argv[])
 {
-    srand(static_cast<uint32_t>(time(NULL)));
+    srand(static_cast<uint32_t>(time(nullptr)));
 
     if (argc != 3)
     {
@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
     }
 
     std::string mode = argv[1];
-    uint32_t count = strtoul(argv[2], NULL, 10);
+    uint32_t count = strtoul(argv[2], nullptr, 10);
 
     if (mode == "xor")
     {

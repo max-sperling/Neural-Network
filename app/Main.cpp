@@ -14,7 +14,7 @@
 
 int main(int argc, char* argv[])
 {
-    srand(static_cast<uint32_t>(time(NULL)));
+    srand(static_cast<uint32_t>(time(nullptr)));
 
     utils::Arguments args;
     args.parseArguments(argc, argv);
@@ -28,7 +28,9 @@ int main(int argc, char* argv[])
 
     network::Network network(args);
     reader::Reader reader(args);
-    std::vector<std::float64_t> inputVals, targetVals, resultVals;
+    std::vector<std::float64_t> inputVals;
+    std::vector<std::float64_t> targetVals;
+    std::vector<std::float64_t> resultVals;
     uint32_t epoch = 0;
 
     while (reader.getNextDataset(inputVals, targetVals))

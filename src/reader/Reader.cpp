@@ -34,7 +34,8 @@ bool Reader::getNextDataset(std::vector<std::float64_t>& inputVals,
     inputVals.clear();
     outputVals.clear();
 
-    std::string inputLine, outputLine;
+    std::string inputLine;
+    std::string outputLine;
     getline(m_dataFile, inputLine);
     getline(m_dataFile, outputLine);
 

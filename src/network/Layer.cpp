@@ -12,18 +12,24 @@ namespace network {
 Layer::Layer(Type type, uint32_t numOutputs)
     : m_numOutputs(numOutputs), m_neurons(), m_bias()
 {
-    if (type == Type::UNDEF) {
-        std::cerr << "The type of a layer can't be UNDEF\n";
-        std::exit(1);
-    }
-
     switch (type)
     {
+    case Type::UNDEF:
+        {
+            std::cerr << "The type of a layer can't be UNDEF\n";
+            std::exit(1);
+        }
     case Type::INPUT:
     case Type::HIDDEN:
         {
             int32_t index = -1;
             m_bias = std::make_optional<Neuron>(index, m_numOutputs, true);
+            break;
+        }
+    case Type::OUTPUT:
+        {
+            // No bias neuron for output layer
+            break;
         }
     }
 }
